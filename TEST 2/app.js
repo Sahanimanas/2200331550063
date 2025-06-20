@@ -7,11 +7,11 @@ app.use(express.json());
 const PORT = 3000;
 const WINDOW_SIZE = 10;
 
-app.get('/numbers/:numberid', async (req, res) => {
-  const { numberid } = req.params;
+app.get('/numbers/:numid', async (req, res) => {
+  const { numid } = req.params;
   const validIds = ['p', 'f', 'e', 'r'];
   
-  if (!validIds.includes(numberid)) {
+  if (!validIds.includes(numid)) {
     return res.status(400).json({ error: 'Invalid number ID' });
   }
 
@@ -19,7 +19,7 @@ app.get('/numbers/:numberid', async (req, res) => {
   
   let numbers = [];
   try {
-    numbers = await getnumber(numberid);
+    numbers = await getnumber(numid);
     if(!Array.isArray(numbers) || numbers.length === 0) {
      numbers = []; 
     }
